@@ -8,6 +8,9 @@ import Index from "./pages/Index.tsx";
 import ProductsPage from "./pages/ProductsPage.tsx";
 import CategoryPage from "./pages/CategoryPage.tsx";
 import ProductDetailPage from "./pages/ProductDetailPage.tsx";
+import CartPage from "./pages/CartPage.tsx";
+import WishlistPage from "./pages/WishlistPage.tsx";
+import CheckoutPage from "./pages/CheckoutPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -24,6 +27,9 @@ const App = () => (
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/category/:name" element={<CategoryPage />} />
             <Route path="/product/:id" element={<ProductDetailPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/wishlist" element={<WishlistPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
