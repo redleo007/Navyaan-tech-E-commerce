@@ -27,7 +27,7 @@ const CheckoutPage = () => {
   };
 
   if (items.length === 0 && step !== "success") {
-    navigate("/cart");
+    navigate("/cart", { replace: true });
     return null;
   }
 
