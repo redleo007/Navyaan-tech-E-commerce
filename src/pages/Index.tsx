@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import { products, categories } from "@/data/products";
 
 const features = [
-  { icon: Truck, title: "Free Shipping", desc: "On orders over $50" },
+  { icon: Truck, title: "Free Shipping", desc: "On orders over ₹2,000" },
   { icon: ShieldCheck, title: "Secure Payment", desc: "100% protected checkout" },
   { icon: RotateCcw, title: "Easy Returns", desc: "30-day return policy" },
 ];
