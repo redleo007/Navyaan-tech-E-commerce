@@ -28,20 +28,27 @@ const Index = () => {
 
       {/* Hero */}
       <section className="relative bg-secondary">
-        <div className="container py-16 sm:py-20 md:py-32 text-center space-y-5 sm:space-y-6">
-          <p className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground">Premium Tech Accessories</p>
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight text-foreground leading-tight">
-            Gear Up Your<br />Workspace
-          </h1>
-          <p className="text-sm sm:text-base text-muted-foreground max-w-md mx-auto">
-            Curated collection of keyboards, mice, bags, and accessories designed for modern professionals.
-          </p>
-          <Link
-            to="/products"
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
-          >
-            Shop Now <ArrowRight className="h-4 w-4" />
-          </Link>
+        <div className="container py-8 md:py-12 space-y-6">
+          <div className="rounded-2xl overflow-hidden border bg-background">
+            <img
+              src="/blogpost_accessories_1.webp"
+              alt="Laptop accessories banner"
+              className="w-full h-auto object-cover"
+              loading="eager"
+            />
+          </div>
+
+          <div className="text-center space-y-3">
+            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
+              Discover keyboards, cooling pads, laptop stands, hubs, and everyday essentials for your setup.
+            </p>
+            <Link
+              to="/products"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
+            >
+              Shop Now <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
