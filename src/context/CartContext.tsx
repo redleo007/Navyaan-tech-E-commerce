@@ -7,13 +7,20 @@ type CartContextType = {
   items: CartItem[];
   addToCart: (product: Product) => void;
   removeFromCart: (id: number) => void;
+  updateQuantity: (id: number, qty: number) => void;
+  clearCart: () => void;
   totalItems: number;
+  totalPrice: number;
+  wishlist: Product[];
+  toggleWishlist: (product: Product) => void;
+  isInWishlist: (id: number) => boolean;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [wishlist, setWishlist] = useState<Product[]>([]);
 
   const addToCart = (product: Product) => {
     setItems((prev) => {
@@ -29,10 +36,28 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setItems((prev) => prev.filter((i) => i.id !== id));
   };
 
+  const updateQuantity = (id: number, qty: number) => {
+    if (qty < 1) return removeFromCart(id);
+    setItems((prev) => prev.map((i) => i.id === id ? { ...i, quantity: qty } : i));
+  };
+
+  const clearCart = () => setItems([]);
+
   const totalItems = items.reduce((sum, i) => sum + i.quantity, 0);
+  const totalPrice = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+
+  const toggleWishlist = (product: Product) => {
+    setWishlist((prev) =>
+      prev.find((p) => p.id === product.id)
+        ? prev.filter((p) => p.id !== product.id)
+        : [...prev, product]
+    );
+  };
+
+  const isInWishlist = (id: number) => wishlist.some((p) => p.id === id);
 
   return (
-    <CartContext.Provider value={{ items, addToCart, removeFromCart, totalItems }}>
+    <CartContext.Provider value={{ items, addToCart, removeFromCart, updateQuantity, clearCart, totalItems, totalPrice, wishlist, toggleWishlist, isInWishlist }}>
       {children}
     </CartContext.Provider>
   );
