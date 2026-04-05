@@ -3,9 +3,9 @@ import logo from "@/assets/logo.png";
 
 const Footer = () => (
   <footer className="border-t bg-secondary/50 mt-20">
-    <div className="container py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div className="container py-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
       <div>
-        <div className="flex items-center gap-2 mb-3">
+        <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
           <img src={logo} alt="Navyaan Techs" className="h-7 w-7 object-contain" width={28} height={28} />
           <h4 className="font-semibold text-foreground">Navyaan Techs</h4>
         </div>
@@ -13,7 +13,7 @@ const Footer = () => (
       </div>
       <div>
         <h4 className="font-semibold text-foreground mb-3">Shop</h4>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 items-center md:items-start">
           {["Keyboards", "Mouse", "Bags", "Chargers", "Accessories"].map((c) => (
             <Link key={c} to={`/category/${c}`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">{c}</Link>
           ))}
@@ -21,7 +21,7 @@ const Footer = () => (
       </div>
       <div>
         <h4 className="font-semibold text-foreground mb-3">Support</h4>
-        <div className="flex flex-col gap-2 text-sm text-muted-foreground">
+        <div className="flex flex-col gap-2 text-sm text-muted-foreground items-center md:items-start">
           <span>help@navyantechs.com</span>
           <span>+91 1800-NAVYAN</span>
         </div>

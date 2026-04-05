@@ -35,6 +35,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         <Link to={`/product/${product.id}`} className="block">
           <h3 className="font-medium text-card-foreground leading-snug line-clamp-1">{product.name}</h3>
         </Link>
+        <p className="text-xs text-muted-foreground">{product.brand}</p>
         <div className="flex items-center gap-1">
           {Array.from({ length: 5 }).map((_, i) => (
             <Star
@@ -45,7 +46,10 @@ const ProductCard = ({ product }: { product: Product }) => {
           <span className="text-xs text-muted-foreground ml-1">{product.rating}</span>
         </div>
         <div className="flex items-center justify-between pt-1">
-          <span className="font-semibold text-card-foreground">₹{product.price.toLocaleString("en-IN")}</span>
+          <div>
+            <span className="font-semibold text-card-foreground block">₹{product.price.toLocaleString("en-IN")}</span>
+            <span className="text-[11px] text-muted-foreground">{product.stock > 0 ? `${product.stock} left` : "Out of stock"}</span>
+          </div>
           <button
             onClick={() => addToCart(product)}
             className="h-8 w-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:opacity-90 transition-opacity"

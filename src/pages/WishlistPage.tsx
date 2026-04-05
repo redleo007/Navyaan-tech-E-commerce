@@ -28,8 +28,8 @@ const WishlistPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="container py-10 flex-1 space-y-8">
-        <h1 className="text-3xl font-bold text-foreground">Wishlist ({wishlist.length})</h1>
+      <div className="container py-8 md:py-10 flex-1 space-y-6 md:space-y-8">
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground">Wishlist ({wishlist.length})</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {wishlist.map((product) => (
             <div key={product.id} className="rounded-2xl bg-card border overflow-hidden">

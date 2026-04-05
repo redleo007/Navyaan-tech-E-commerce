@@ -67,8 +67,8 @@ const ProductsPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="container py-10 space-y-8 flex-1">
-        <h1 className="text-3xl font-bold text-foreground">All Products</h1>
+      <div className="container py-8 md:py-10 space-y-6 md:space-y-8 flex-1">
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground">All Products</h1>
 
         {/* Filters bar */}
         <div className="flex flex-col gap-4">
@@ -81,7 +81,7 @@ const ProductsPage = () => {
               className="w-full pl-10 pr-4 py-2.5 rounded-xl border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-3 md:gap-4">
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
@@ -136,7 +136,7 @@ const ProductsPage = () => {
             </select>
           </div>
 
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <p className="text-sm text-muted-foreground">
               {filtered.length} result{filtered.length === 1 ? "" : "s"} found
             </p>
@@ -160,7 +160,7 @@ const ProductsPage = () => {
             </div>
 
             {totalPages > 1 && (
-              <div className="flex items-center justify-center gap-2 pt-4">
+              <div className="flex items-center justify-center gap-2 pt-4 flex-wrap">
                 <button
                   onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
                   disabled={currentPage === 1}

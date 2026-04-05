@@ -28,13 +28,13 @@ const CartPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="container py-10 flex-1 space-y-8">
-        <h1 className="text-3xl font-bold text-foreground">Shopping Cart</h1>
+      <div className="container py-8 md:py-10 flex-1 space-y-6 md:space-y-8">
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground">Shopping Cart</h1>
 
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-4">
             {items.map((item) => (
-              <div key={item.id} className="flex gap-4 p-4 rounded-2xl border bg-card">
+              <div key={item.id} className="flex flex-col sm:flex-row gap-4 p-4 rounded-2xl border bg-card">
                 <Link to={`/product/${item.id}`} className="w-24 h-24 rounded-xl overflow-hidden bg-secondary shrink-0">
                   <img
                     src={item.image}
@@ -51,7 +51,7 @@ const CartPage = () => {
                   <p className="text-xs text-muted-foreground">{item.category}</p>
                   <p className="font-semibold text-card-foreground">₹{item.price.toLocaleString("en-IN")}</p>
                 </div>
-                <div className="flex flex-col items-end justify-between">
+                <div className="flex flex-row sm:flex-col items-start sm:items-end justify-between gap-3 sm:gap-0">
                   <button onClick={() => removeFromCart(item.id)} className="text-muted-foreground hover:text-destructive transition-colors">
                     <Trash2 className="h-4 w-4" />
                   </button>
@@ -70,7 +70,7 @@ const CartPage = () => {
           </div>
 
           <div className="space-y-4">
-            <div className="rounded-2xl border bg-card p-6 space-y-4">
+            <div className="rounded-2xl border bg-card p-6 space-y-4 lg:sticky lg:top-24">
               <h2 className="font-semibold text-card-foreground">Order Summary</h2>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between text-muted-foreground">

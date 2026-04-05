@@ -19,9 +19,9 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-lg border-b">
       <div className="container flex items-center justify-between h-16">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2 min-w-0">
           <img src={logo} alt="Navyaan Techs" className="h-8 w-8 object-contain" width={32} height={32} />
-          <span className="text-xl font-semibold tracking-tight">Navyaan Techs</span>
+          <span className="text-base sm:text-xl font-semibold tracking-tight truncate">Navyaan Techs</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
@@ -32,11 +32,11 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="flex items-center gap-4">
-          <Link to="/products" className="text-muted-foreground hover:text-foreground transition-colors">
+        <div className="flex items-center gap-2 sm:gap-4">
+          <Link to="/products" className="text-muted-foreground hover:text-foreground transition-colors p-1.5 sm:p-0">
             <Search className="h-5 w-5" />
           </Link>
-          <Link to="/wishlist" className="relative text-muted-foreground hover:text-foreground transition-colors">
+          <Link to="/wishlist" className="relative text-muted-foreground hover:text-foreground transition-colors p-1.5 sm:p-0">
             <Heart className="h-5 w-5" />
             {wishlist.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-destructive text-destructive-foreground text-[10px] font-medium w-4 h-4 rounded-full flex items-center justify-center">
@@ -44,7 +44,7 @@ const Navbar = () => {
               </span>
             )}
           </Link>
-          <Link to="/cart" className="relative text-muted-foreground hover:text-foreground transition-colors">
+          <Link to="/cart" className="relative text-muted-foreground hover:text-foreground transition-colors p-1.5 sm:p-0">
             <ShoppingBag className="h-5 w-5" />
             {totalItems > 0 && (
               <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-[10px] font-medium w-4 h-4 rounded-full flex items-center justify-center">
@@ -52,7 +52,7 @@ const Navbar = () => {
               </span>
             )}
           </Link>
-          <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
+          <button className="md:hidden text-foreground p-1.5" onClick={() => setOpen(!open)}>
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>

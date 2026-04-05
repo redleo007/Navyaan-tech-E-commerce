@@ -40,7 +40,7 @@ const ProductDetailPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="container py-10 space-y-12 flex-1">
+      <div className="container py-8 md:py-10 space-y-8 md:space-y-12 flex-1">
         <Link to="/products" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
           <ArrowLeft className="h-4 w-4" /> Back to Products
         </Link>
@@ -57,9 +57,9 @@ const ProductDetailPage = () => {
               }}
             />
           </div>
-          <div className="space-y-6 flex flex-col justify-center">
+          <div className="space-y-5 md:space-y-6 flex flex-col justify-center">
             <p className="text-sm uppercase tracking-widest text-muted-foreground">{product.category}</p>
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground">{product.name}</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{product.name}</h1>
             <div className="flex items-center gap-2">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star key={i} className={`h-4 w-4 ${i < Math.round(product.rating) ? "fill-amber-400 text-amber-400" : "text-border"}`} />
@@ -67,8 +67,40 @@ const ProductDetailPage = () => {
               <span className="text-sm text-muted-foreground">{product.rating} rating</span>
             </div>
             <p className="text-muted-foreground leading-relaxed">{product.description}</p>
-            <p className="text-3xl font-bold text-foreground">₹{product.price.toLocaleString("en-IN")}</p>
-            <div className="flex items-center gap-3">
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+              <div className="rounded-xl border p-3 bg-card">
+                <p className="text-muted-foreground">Brand</p>
+                <p className="font-medium text-card-foreground">{product.brand}</p>
+              </div>
+              <div className="rounded-xl border p-3 bg-card">
+                <p className="text-muted-foreground">SKU</p>
+                <p className="font-medium text-card-foreground">{product.sku}</p>
+              </div>
+              <div className="rounded-xl border p-3 bg-card">
+                <p className="text-muted-foreground">Availability</p>
+                <p className={`font-medium ${product.stock > 10 ? "text-foreground" : "text-amber-600"}`}>
+                  {product.stock > 0 ? `${product.stock} in stock` : "Out of stock"}
+                </p>
+              </div>
+              <div className="rounded-xl border p-3 bg-card">
+                <p className="text-muted-foreground">Warranty</p>
+                <p className="font-medium text-card-foreground">{product.warranty}</p>
+              </div>
+            </div>
+
+            <div className="rounded-xl border p-4 bg-card space-y-2">
+              <p className="text-sm font-medium text-card-foreground">Highlights</p>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
+                {product.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+              <p className="text-xs text-muted-foreground pt-1">{product.delivery}</p>
+            </div>
+
+            <p className="text-2xl sm:text-3xl font-bold text-foreground">₹{product.price.toLocaleString("en-IN")}</p>
+            <div className="flex flex-wrap items-center gap-3">
               <div className="flex items-center gap-2 border rounded-full px-1">
                 <button
                   onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
@@ -87,7 +119,7 @@ const ProductDetailPage = () => {
 
               <button
                 onClick={addSelectedQuantityToCart}
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
+                className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 sm:px-8 py-3 rounded-full text-sm font-medium hover:opacity-90 transition-opacity w-full sm:w-auto"
               >
                 <Plus className="h-4 w-4" /> Add to Cart
               </button>
@@ -97,7 +129,7 @@ const ProductDetailPage = () => {
                   addSelectedQuantityToCart();
                   navigate("/checkout");
                 }}
-                className="inline-flex items-center gap-2 border px-6 py-3 rounded-full text-sm font-medium hover:bg-secondary transition-colors"
+                className="inline-flex items-center justify-center gap-2 border px-6 py-3 rounded-full text-sm font-medium hover:bg-secondary transition-colors w-full sm:w-auto"
               >
                 Buy Now
               </button>

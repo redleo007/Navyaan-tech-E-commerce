@@ -98,11 +98,11 @@ const CheckoutPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="container py-10 flex-1 space-y-8">
+      <div className="container py-8 md:py-10 flex-1 space-y-6 md:space-y-8">
         <Link to="/cart" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
           <ArrowLeft className="h-4 w-4" /> Back to Cart
         </Link>
-        <h1 className="text-3xl font-bold text-foreground">Checkout</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground">Checkout</h1>
 
         <form onSubmit={handleSubmit} className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
@@ -233,7 +233,7 @@ const CheckoutPage = () => {
 
           {/* Summary */}
           <div>
-            <div className="rounded-2xl border bg-card p-6 space-y-4 sticky top-24">
+            <div className="rounded-2xl border bg-card p-6 space-y-4 lg:sticky lg:top-24">
               <h2 className="font-semibold text-card-foreground">Order Summary</h2>
               <div className="space-y-2 max-h-48 overflow-y-auto">
                 {items.map((item) => (

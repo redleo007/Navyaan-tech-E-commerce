@@ -11,13 +11,13 @@ const CategoryPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="container py-10 space-y-8 flex-1">
+      <div className="container py-8 md:py-10 space-y-6 md:space-y-8 flex-1">
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Link to="/" className="hover:text-foreground transition-colors">Home</Link>
           <span>/</span>
           <span className="text-foreground">{name}</span>
         </div>
-        <h1 className="text-3xl font-bold text-foreground">{name}</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground">{name}</h1>
         {filtered.length === 0 ? (
           <p className="text-center text-muted-foreground py-20">No products in this category.</p>
         ) : (

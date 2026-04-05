@@ -28,12 +28,12 @@ const Index = () => {
 
       {/* Hero */}
       <section className="relative bg-secondary">
-        <div className="container py-24 md:py-32 text-center space-y-6">
-          <p className="text-sm uppercase tracking-widest text-muted-foreground">Premium Tech Accessories</p>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground leading-tight">
+        <div className="container py-16 sm:py-20 md:py-32 text-center space-y-5 sm:space-y-6">
+          <p className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground">Premium Tech Accessories</p>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight text-foreground leading-tight">
             Gear Up Your<br />Workspace
           </h1>
-          <p className="text-muted-foreground max-w-md mx-auto">
+          <p className="text-sm sm:text-base text-muted-foreground max-w-md mx-auto">
             Curated collection of keyboards, mice, bags, and accessories designed for modern professionals.
           </p>
           <Link
@@ -46,8 +46,8 @@ const Index = () => {
       </section>
 
       {/* Categories */}
-      <section className="container py-16 space-y-8">
-        <h2 className="text-2xl font-semibold text-foreground">Shop by Category</h2>
+      <section className="container py-12 md:py-16 space-y-6 md:space-y-8">
+        <h2 className="text-xl md:text-2xl font-semibold text-foreground">Shop by Category</h2>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {categories.map((cat) => (
             <Link
@@ -65,9 +65,9 @@ const Index = () => {
       </section>
 
       {/* Featured */}
-      <section className="container py-16 space-y-8">
+      <section className="container py-12 md:py-16 space-y-6 md:space-y-8">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-semibold text-foreground">Featured Products</h2>
+          <h2 className="text-xl md:text-2xl font-semibold text-foreground">Featured Products</h2>
           <Link to="/products" className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
             View All <ArrowRight className="h-3.5 w-3.5" />
           </Link>
@@ -80,7 +80,7 @@ const Index = () => {
       </section>
 
       {/* Features */}
-      <section className="container py-16">
+      <section className="container py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {features.map((f) => (
             <div key={f.title} className="flex items-start gap-4 p-6 rounded-2xl bg-secondary">
