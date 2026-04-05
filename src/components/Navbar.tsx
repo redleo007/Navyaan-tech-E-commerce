@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ShoppingBag, Search, Menu, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useState } from "react";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -18,8 +19,9 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-lg border-b">
       <div className="container flex items-center justify-between h-16">
-        <Link to="/" className="text-xl font-semibold tracking-tight">
-          Device Gear
+        <Link to="/" className="flex items-center gap-2">
+          <img src={logo} alt="Navyan Techs" className="h-8 w-8" width={32} height={32} />
+          <span className="text-xl font-semibold tracking-tight">Navyan Techs</span>
         </Link>
 
         {/* Desktop links */}

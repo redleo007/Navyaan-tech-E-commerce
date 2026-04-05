@@ -45,7 +45,7 @@ const ProductDetailPage = () => {
               <span className="text-sm text-muted-foreground">{product.rating} rating</span>
             </div>
             <p className="text-muted-foreground leading-relaxed">{product.description}</p>
-            <p className="text-3xl font-bold text-foreground">${product.price.toFixed(2)}</p>
+            <p className="text-3xl font-bold text-foreground">₹{product.price.toLocaleString("en-IN")}</p>
             <button
               onClick={() => addToCart(product)}
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-full text-sm font-medium hover:opacity-90 transition-opacity w-fit"
