@@ -6,6 +6,7 @@ import { useCart } from "@/context/CartContext";
 
 const CartPage = () => {
   const { items, removeFromCart, updateQuantity, totalPrice } = useCart();
+  const fallbackImage = "/common-thumbnail.svg";
 
   if (items.length === 0) {
     return (
@@ -35,7 +36,15 @@ const CartPage = () => {
             {items.map((item) => (
               <div key={item.id} className="flex gap-4 p-4 rounded-2xl border bg-card">
                 <Link to={`/product/${item.id}`} className="w-24 h-24 rounded-xl overflow-hidden bg-secondary shrink-0">
-                  <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = fallbackImage;
+                    }}
+                  />
                 </Link>
                 <div className="flex-1 min-w-0 space-y-1">
                   <Link to={`/product/${item.id}`} className="font-medium text-card-foreground line-clamp-1 hover:underline">{item.name}</Link>

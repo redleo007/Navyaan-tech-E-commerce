@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const ProductCard = ({ product }: { product: Product }) => {
   const { addToCart, toggleWishlist, isInWishlist } = useCart();
   const wishlisted = isInWishlist(product.id);
+  const fallbackImage = "/common-thumbnail.svg";
 
   return (
     <div className="group rounded-2xl bg-card border overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
@@ -15,6 +16,10 @@ const ProductCard = ({ product }: { product: Product }) => {
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           loading="lazy"
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = fallbackImage;
+          }}
         />
       </Link>
       <div className="p-4 space-y-2">

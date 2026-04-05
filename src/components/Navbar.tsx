@@ -20,8 +20,8 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-lg border-b">
       <div className="container flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Navyan Techs" className="h-8 w-8" width={32} height={32} />
-          <span className="text-xl font-semibold tracking-tight">Navyan Techs</span>
+          <img src={logo} alt="Navyaan Techs" className="h-8 w-8 object-contain" width={32} height={32} />
+          <span className="text-xl font-semibold tracking-tight">Navyaan Techs</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">

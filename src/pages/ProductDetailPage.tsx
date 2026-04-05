@@ -1,5 +1,6 @@
-import { useParams, Link } from "react-router-dom";
-import { Star, Plus, ArrowLeft, Heart } from "lucide-react";
+import { useState } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { Star, Plus, Minus, ArrowLeft, Heart } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
@@ -7,10 +8,20 @@ import { products } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 
 const ProductDetailPage = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { addToCart, toggleWishlist, isInWishlist } = useCart();
+  const [quantity, setQuantity] = useState(1);
+  const fallbackImage = "/common-thumbnail.svg";
   const wishlisted = products.find((p) => p.id === Number(id)) ? isInWishlist(Number(id)) : false;
   const product = products.find((p) => p.id === Number(id));
+
+  const addSelectedQuantityToCart = () => {
+    if (!product) return;
+    for (let count = 0; count < quantity; count += 1) {
+      addToCart(product);
+    }
+  };
 
   if (!product) {
     return (
@@ -36,7 +47,15 @@ const ProductDetailPage = () => {
 
         <div className="grid md:grid-cols-2 gap-10">
           <div className="aspect-square rounded-2xl overflow-hidden bg-secondary">
-            <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = fallbackImage;
+              }}
+            />
           </div>
           <div className="space-y-6 flex flex-col justify-center">
             <p className="text-sm uppercase tracking-widest text-muted-foreground">{product.category}</p>
@@ -50,12 +69,39 @@ const ProductDetailPage = () => {
             <p className="text-muted-foreground leading-relaxed">{product.description}</p>
             <p className="text-3xl font-bold text-foreground">₹{product.price.toLocaleString("en-IN")}</p>
             <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 border rounded-full px-1">
+                <button
+                  onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
+                  className="h-9 w-9 flex items-center justify-center text-muted-foreground hover:text-foreground"
+                >
+                  <Minus className="h-4 w-4" />
+                </button>
+                <span className="text-sm font-medium w-7 text-center">{quantity}</span>
+                <button
+                  onClick={() => setQuantity((prev) => Math.min(10, prev + 1))}
+                  className="h-9 w-9 flex items-center justify-center text-muted-foreground hover:text-foreground"
+                >
+                  <Plus className="h-4 w-4" />
+                </button>
+              </div>
+
               <button
-                onClick={() => addToCart(product)}
+                onClick={addSelectedQuantityToCart}
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
               >
                 <Plus className="h-4 w-4" /> Add to Cart
               </button>
+
+              <button
+                onClick={() => {
+                  addSelectedQuantityToCart();
+                  navigate("/checkout");
+                }}
+                className="inline-flex items-center gap-2 border px-6 py-3 rounded-full text-sm font-medium hover:bg-secondary transition-colors"
+              >
+                Buy Now
+              </button>
+
               <button
                 onClick={() => toggleWishlist(product)}
                 className={`h-11 w-11 rounded-full border flex items-center justify-center transition-colors ${wishlisted ? "border-destructive text-destructive" : "text-muted-foreground hover:text-destructive hover:border-destructive"}`}

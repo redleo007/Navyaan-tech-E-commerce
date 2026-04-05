@@ -6,6 +6,7 @@ import { useCart } from "@/context/CartContext";
 
 const WishlistPage = () => {
   const { wishlist, toggleWishlist, addToCart } = useCart();
+  const fallbackImage = "/common-thumbnail.svg";
 
   if (wishlist.length === 0) {
     return (
@@ -33,7 +34,16 @@ const WishlistPage = () => {
           {wishlist.map((product) => (
             <div key={product.id} className="rounded-2xl bg-card border overflow-hidden">
               <Link to={`/product/${product.id}`} className="block aspect-[4/3] overflow-hidden bg-secondary">
-                <img src={product.image} alt={product.name} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = fallbackImage;
+                  }}
+                />
               </Link>
               <div className="p-4 space-y-3">
                 <Link to={`/product/${product.id}`}>

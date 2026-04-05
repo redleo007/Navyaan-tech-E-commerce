@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { Product } from "@/data/products";
 
 type CartItem = Product & { quantity: number };
@@ -18,9 +18,29 @@ type CartContextType = {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+const CART_STORAGE_KEY = "navyaan_cart_items";
+const WISHLIST_STORAGE_KEY = "navyaan_wishlist_items";
+
+const readStorage = <T,>(key: string, fallback: T): T => {
+  try {
+    const value = localStorage.getItem(key);
+    return value ? (JSON.parse(value) as T) : fallback;
+  } catch {
+    return fallback;
+  }
+};
+
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [items, setItems] = useState<CartItem[]>([]);
-  const [wishlist, setWishlist] = useState<Product[]>([]);
+  const [items, setItems] = useState<CartItem[]>(() => readStorage<CartItem[]>(CART_STORAGE_KEY, []));
+  const [wishlist, setWishlist] = useState<Product[]>(() => readStorage<Product[]>(WISHLIST_STORAGE_KEY, []));
+
+  useEffect(() => {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+  }, [items]);
+
+  useEffect(() => {
+    localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(wishlist));
+  }, [wishlist]);
 
   const addToCart = (product: Product) => {
     setItems((prev) => {
